@@ -130,11 +130,14 @@
             box-shadow: 0 0 15px #ff9900;
         }
 
-        /* Pantalla Misteriosa - Trampa sin salida */
+        /* Pantalla Misteriosa - Trampa sin salida (Mejorado para móvil) */
         #pantalla-misterio {
             display: none;
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; /* Sustituye a 100vw/100vh para evitar bugs en celulares */
             background-color: #000;
             z-index: 9999;
             justify-content: center;
@@ -152,23 +155,24 @@
             100% { background-color: #000; }
         }
 
-        /* Imágenes gigantes ocupando toda la pantalla */
+        /* Imágenes gigantes optimizadas para móvil */
         #carrusel-img {
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover; /* Hace que la imagen llene toda la pantalla */
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Garantiza que la imagen completa se vea sin cortarse */
             animation: shake 0.2s infinite;
         }
 
         @keyframes shake {
-            0% { transform: translate(10px, 10px) rotate(0deg) scale(1.1); }
-            50% { transform: translate(-10px, -10px) rotate(2deg) scale(1.15); }
-            100% { transform: translate(10px, -10px) rotate(-2deg) scale(1.1); }
+            0% { transform: translate(8px, 8px) rotate(0deg) scale(1.05); }
+            50% { transform: translate(-8px, -8px) rotate(2deg) scale(1.1); }
+            100% { transform: translate(8px, -8px) rotate(-2deg) scale(1.05); }
         }
 
         @media (max-width: 600px) {
             .links-grid { grid-template-columns: 1fr; }
             h1 { font-size: 2rem; }
+            .container { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -177,7 +181,7 @@
     <div class="container">
         <img src="logo.png" alt="Logo de Masakure Mosh" class="logo-banda">
 
-        <h1>MASAKURE MOSH no existe, nunca existió y nunca existirá</h1>
+        <h1>MASAKURE MOSH</h1>
         <p>Gracias por el apoyo. <br>¡Nos vemos en el mosh este <span class="highlight">14 de marzo</span>!</p>
 
         <div class="video-wrapper">
@@ -194,15 +198,15 @@
 
     <div id="pantalla-misterio">
         <img id="carrusel-img" src="" alt="Arte Caótico">
-        
-        <div id="reproductor-youtube" style="display: none;"></div>
     </div>
+
+    <audio id="audio-trampa" src="dubstep.mp3" loop preload="auto"></audio>
 
     <script>
         const btnMisterio = document.getElementById('btn-misterio');
         const pantallaMisterio = document.getElementById('pantalla-misterio');
         const imgCarrusel = document.getElementById('carrusel-img');
-        const reproductorYoutube = document.getElementById('reproductor-youtube');
+        const reproductorAudio = document.getElementById('audio-trampa');
 
         const imagenes = [
             "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg",
@@ -216,8 +220,8 @@
             pantallaMisterio.style.display = 'flex';
             pantallaMisterio.classList.add('dubstep-mode');
             
-            // YouTube en bucle (loop=1 y playlist=ID_DEL_VIDEO)
-            reproductorYoutube.innerHTML = '<iframe src="https://www.youtube.com/embed/ZuyhdtAxnz4?autoplay=1&controls=0&loop=1&playlist=ZuyhdtAxnz4" allow="autoplay" style="width:0;height:0;border:none;"></iframe>';
+            // Reproduce el MP3 instantáneamente
+            reproductorAudio.play();
 
             // Iniciar el carrusel rápido
             imgCarrusel.src = imagenes[0];
@@ -226,8 +230,6 @@
                 imgCarrusel.src = imagenes[indiceActual];
             }, 300);
         });
-        
-        // El botón de cerrar fue eliminado. ¡No hay escapatoria!
     </script>
 </body>
 </html>
