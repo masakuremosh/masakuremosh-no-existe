@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masakure Mosh | Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rojo: #E50914;
+            --rojo-brillo: #ff2a35;
+            --negro-fondo: #121212;
+            --blanco: #ffffff;
+            --transicion: all 0.3s ease;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--negro-fondo) 0%, #000000 100%);
+            color: var(--blanco);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Estilo del Logo fijo */
+        .logo-banda {
+            max-width: 250px;
+            height: auto;
+            margin: 0 auto 20px auto;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(229, 9, 20, 0.3));
+        }
+
+        h1 {
+            font-weight: 900;
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        p {
+            color: #cccccc;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            color: var(--rojo);
+            font-weight: 700;
+        }
+
+        /* Estilo del Video fijo */
+        .video-wrapper {
+            margin: 30px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+            background: #000;
+            border: 2px solid #222;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            display: block;
+        }
+
+        /* Botones de Redes */
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--blanco);
+            border: 2px solid var(--rojo);
+            padding: 15px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transicion);
+        }
+
+        .btn:hover {
+            background: var(--rojo);
+            box-shadow: 0 0 15px var(--rojo-brillo);
+            transform: translateY(-3px);
+        }
+
+        /* El botón trampa */
+        .btn-surullo {
+            grid-column: 1 / -1;
+            border-color: #ff9900;
+            color: #ff9900;
+            margin-top: 10px;
+        }
+
+        .btn-surullo:hover {
+            background: #ff9900;
+            color: #000;
+            box-shadow: 0 0 15px #ff9900;
+        }
+
+        /* Pantalla Misteriosa - Trampa sin salida */
+        #pantalla-misterio {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #000;
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .dubstep-mode {
+            animation: flash 0.15s infinite;
+        }
+
+        @keyframes flash {
+            0% { background-color: #000; }
+            50% { background-color: var(--rojo); }
+            100% { background-color: #000; }
+        }
+
+        /* Imágenes gigantes ocupando toda la pantalla */
+        #carrusel-img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* Hace que la imagen llene toda la pantalla */
+            animation: shake 0.2s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(10px, 10px) rotate(0deg) scale(1.1); }
+            50% { transform: translate(-10px, -10px) rotate(2deg) scale(1.15); }
+            100% { transform: translate(10px, -10px) rotate(-2deg) scale(1.1); }
+        }
+
+        @media (max-width: 600px) {
+            .links-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo.png" alt="Logo de Masakure Mosh" class="logo-banda">
+
+        <h1>MASAKURE MOSH</h1>
+        <p>Gracias por el apoyo. <br>¡Nos vemos en el mosh este <span class="highlight">14 de marzo</span>!</p>
+
+        <div class="video-wrapper">
+            <video src="video.mp4" controls poster="poster.jpg"></video>
+        </div>
+
+        <div class="links-grid">
+            <a href="https://instagram.com/masakure_mosh" target="_blank" class="btn">Instagram</a>
+            <a href="https://open.spotify.com/artist/tu_id_aqui" target="_blank" class="btn">Spotify</a>
+            
+            <button id="btn-misterio" class="btn btn-surullo">Un misterio insondable</button>
+        </div>
+    </div>
+
+    <div id="pantalla-misterio">
+        <img id="carrusel-img" src="" alt="Arte Caótico">
+        
+        <div id="reproductor-youtube" style="display: none;"></div>
+    </div>
+
+    <script>
+        const btnMisterio = document.getElementById('btn-misterio');
+        const pantallaMisterio = document.getElementById('pantalla-misterio');
+        const imgCarrusel = document.getElementById('carrusel-img');
+        const reproductorYoutube = document.getElementById('reproductor-youtube');
+
+        const imagenes = [
+            "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg",
+            "koala.gif", 
+            "gif2.gif"
+        ];
+        
+        let indiceActual = 0;
+
+        btnMisterio.addEventListener('click', () => {
+            pantallaMisterio.style.display = 'flex';
+            pantallaMisterio.classList.add('dubstep-mode');
+            
+            // YouTube en bucle (loop=1 y playlist=ID_DEL_VIDEO)
+            reproductorYoutube.innerHTML = '<iframe src="https://www.youtube.com/embed/ZuyhdtAxnz4?autoplay=1&controls=0&loop=1&playlist=ZuyhdtAxnz4" allow="autoplay" style="width:0;height:0;border:none;"></iframe>';
+
+            // Iniciar el carrusel rápido
+            imgCarrusel.src = imagenes[0];
+            setInterval(() => {
+                indiceActual = (indiceActual + 1) % imagenes.length;
+                imgCarrusel.src = imagenes[indiceActual];
+            }, 300);
+        });
+        
+        // El botón de cerrar fue eliminado. ¡No hay escapatoria!
+    </script>
+</body>
+</html>
