@@ -72,17 +72,20 @@
 
         /* Estilo del Video fijo */
         .video-wrapper {
-            margin: 30px 0;
+            margin: 30px auto; /* 'auto' a los lados centra el contenedor */
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0,0,0,0.8);
             background: #000;
             border: 2px solid #222;
+            display: flex; /* Centra el iframe dentro del contenedor */
+            justify-content: center;
         }
 
-        .video-wrapper video {
+        /* ¡Cambio importante: usar 'iframe' en lugar de 'video'! */
+        .video-wrapper iframe {
             width: 100%;
-            height: auto;
+            aspect-ratio: 16 / 9; /* Mantiene la proporción perfecta del video */
             max-height: 450px;
             display: block;
         }
